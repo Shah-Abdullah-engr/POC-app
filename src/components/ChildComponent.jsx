@@ -1,16 +1,14 @@
 import React from 'react'
 
-const ChildComponent =(props) => {
+const ChildComponent =() => {
     console.log("Child Component got rerendered again!!")
   return (
     <div>
-        <button>
-            {props.buttonName};
-        </button>
+       Click me 
     </div>
   )
 }
 
 
 
-export default ChildComponent
+export default React.memo(ChildComponent)

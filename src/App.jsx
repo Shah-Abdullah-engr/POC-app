@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import "./App.css";
 import ChildComponent from './components/ChildComponent';
   // const expensiveTask=(num,c)=>{
@@ -14,12 +14,46 @@ const App = () => {
 
  
   
+
+
+  //for count state change!!!
   const handleClick=()=>{
    console.log("Button Clicked!"); 
   setCount(count + 1);
   }
-  // let Doublevalue=useMemo(() => expensiveTask(input), [input])
-      return (
+  //for count state change!!!
+
+
+
+
+    //for using useMemo()hook
+  const calculate=()=>{
+    console.log("calculating!!!");
+    return 4*2;
+  }
+  // const doubleValue=calculate();
+  const doubleValue=useMemo(() => calculate, [])
+    //for using useMemo()hook
+  
+  
+  
+  
+  
+  
+  //This one is for useCallback hook!!!! 
+  const value=useCallback(
+    ()=>{
+      return count*2;
+    },[]
+  )
+  //This one is for useCallback hook!!!!
+ 
+ 
+ 
+ 
+ 
+ 
+  return (
    <> 
    <div>
       Count:{count}
@@ -29,13 +63,15 @@ const App = () => {
       Increment
     </button>
     <br /><br />
-        {/* <input type='number'
+   <ChildComponent handleClick={value}/>
+
+
+
+    {/* <input type='number'
          value={input}
          onChange={(e)=>setInput(e.target.value)}
        />
         <div>double : {Doublevalue}</div> */}
-        
-          <ChildComponent buttonName="Clickme"/>
         
     </>
   )
